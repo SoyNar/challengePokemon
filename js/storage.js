@@ -14,10 +14,12 @@ export function guardarFavorito(pokemon) {
     // verificamos que el pokemon no este registrado todavia para evitar duplicados
     const yaExiste = favoritos.find(fav => fav.name === pokemon.name);
     
-    if (!yaExiste) {
-        favoritos.push(pokemon);
+    if (yaExiste) return false;
+
+         favoritos.push(pokemon);
         localStorage.setItem(claveLocalStorage, JSON.stringify(favoritos));
-    }
+        return true;    
+       
 }
 
 export function eliminarFavorito(nombre) {
@@ -29,11 +31,11 @@ export function eliminarFavorito(nombre) {
     localStorage.setItem(claveLocalStorage, JSON.stringify(nuevosFavoritos));
     
     // buscamos la tarjeta visual del pokemon para quitarla de la pantalla
-    const tarjetas = document.querySelectorAll('.card');
-    tarjetas.forEach(tarjeta => {
-        const titulo = tarjeta.querySelector('.card-title');
-        if (titulo && titulo.textContent === nombre) {
-            tarjeta.remove();
-        }
-    });
+    // const tarjetas = document.querySelectorAll('.card');
+    // tarjetas.forEach(tarjeta => {
+    //     const titulo = tarjeta.querySelector('.card-title');
+    //     if (titulo && titulo.textContent === nombre) {
+    //         tarjeta.remove();
+    //     }
+    // });
 }
