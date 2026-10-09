@@ -1,38 +1,46 @@
 //En este archivo encontrarian la version de todo el codigo JS en 1 solo archivo. 
 
-async function buscarPersonajes() {
-    //Manejamos los errores
+// ==========================================
+// Tarea 2: Consumir la PokéAPI
+// ==========================================
+/**
+ * 1. Recibe el nombre del Pokémon como parámetro.
+ * 2. Hace una petición a la PokéAPI usando fetch.
+ * 3. Convierte la respuesta a JSON.
+ * 4. Devuelve el objeto del Pokémon.
+ * - Usa async/await para manejar la asincronía.
+ * - Usa try/catch para manejar errores.
+ * - Si el Pokémon no existe (error 404), maneja el caso.
+ */
+async function obtenerPokemon(nombre) {
     try {
-        //traiemos el link principal
-        const response = await fetch('https://thesimpsonsapi.com/api');
+        if (!nombre) {
+            throw new Error('Debe proporcionar el nombre de un Pokémon');
+        }
 
-        //validamos la respuesta HTTP
-        if (!response.ok) throw new Error('Error al conectar con la API');
-        //si la respuesta es .ok entonces convierta a formato json
+        const nombreFormateado = nombre.trim().toLowerCase();
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${nombreFormateado}`);
+
+        // Manejo del caso 404 (Pokémon no existe)
+        if (response.status === 404) {
+            throw new Error(`El Pokémon "${nombre}" no existe (Error 404)`);
+        }
+
+        if (!response.ok) {
+            throw new Error(`Error en la petición: ${response.status}`);
+        }
+
         const data = await response.json();
+        return data;
 
-        //console.log(data);
-        const responsePersonajes = await fetch(data.characters);
-        //muestro por consola la respuesta http
-        //console.log(responsePersonajes);
-
-        if (!responsePersonajes.ok) throw new Error('Error al buscar los personajes');
-
-        const listaPersonajes = await responsePersonajes.json();
-
-        //muestro por consola la respuesta en json
-        //console.log(listaPersonajes);
-
-        //accedo a la lista que se llama results y lo retorno
-        return listaPersonajes.results;
-
-        //Si hay algun otro error atrapelo aca y muestre el mensaje
     } catch (error) {
-        console.log('Hubo un error al buscar los personajes: ', error.message);
-        return [];
+        console.error('Hubo un error al buscar el Pokémon:', error.message);
+        return null;
     }
-
 }
+
+const buscarPokemon = obtenerPokemon;
+const buscarPersonajes = obtenerPokemon;
 
 
 function crearTarjetas(InformacionDePersonajes) {
