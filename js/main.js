@@ -99,8 +99,8 @@ function renderFavorites() {
   }
 
   favoritesList.innerHTML = `
-    <div class="d-flex flex-wrap gap-2">
-      ${favorites.map((fav) => createCardHtml(fav)).join('')}
-    </div>
-  `;
+  <div class="container-tarjetas">
+    ${favorites.map((fav) => createCardHtml(fav, 'favorito')).join('')}
+  </div>
+`;
 }
