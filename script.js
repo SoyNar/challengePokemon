@@ -1,5 +1,3 @@
-//En este archivo encontrarian la version de todo el codigo JS en 1 solo archivo. 
-
 // ==========================================
 // Tarea 2: Consumir la PokéAPI
 // ==========================================
@@ -96,14 +94,14 @@ botonBuscar.addEventListener('click', buscarPersonaje);
 
 //Esta funcion no la escribo hasta que llegue a la parte de buscar y la debo colocar arriva como 3ra funcion
 function buscarPersonaje() {
-   
+
     const inputBusqueda = document.getElementById('nombre-personaje');
-    
+
     //Control para saber si se ejecuto la funcion del evento
     console.log("se ejecuto el evento correctamente");
-    
+
     console.log(inputBusqueda.value);
-    
+
     //Guardo el texto limpio y en minusculas
     const textoIngresado = inputBusqueda.value.trim().toLowerCase();
     if (textoIngresado != "") {
@@ -111,24 +109,24 @@ function buscarPersonaje() {
             Usando Optional Chaining (?.) (La más rápida 🌟)
             El signo ?. le dice a JavaScript: "Si name existe, continúa con el toLowerCase(). Si es undefined o null, detente ahí y no rompas el código".
          */
-    
-            //La explicacion la dejo al final del archivo en Obsidian
-            const personajesEncontrados = listaPersonajes.filter(personaje => 
+
+        //La explicacion la dejo al final del archivo en Obsidian
+        const personajesEncontrados = listaPersonajes.filter(personaje =>
             personaje.name?.toLowerCase().includes(textoIngresado));
-    
-            //console.log(personajesEncontrados);
-    
-            CrearTarjetaPersonajeEncontrado(personajesEncontrados);
-    }else{
+
+        //console.log(personajesEncontrados);
+
+        CrearTarjetaPersonajeEncontrado(personajesEncontrados);
+    } else {
         console.log("No se ingreso ningun nombre de personaje");
     }
 
 }
 
-function CrearTarjetaPersonajeEncontrado(listaParaBuscar){
+function CrearTarjetaPersonajeEncontrado(listaParaBuscar) {
     const containerResultadosBusqueda = document.getElementById('container-tarjetas-busqueda');
 
-    for(let personaje of listaParaBuscar){
+    for (let personaje of listaParaBuscar) {
         const tarjeta = document.createElement('div');
         tarjeta.innerHTML = `
         <div class="simpson-tarjeta-busqueda">
@@ -139,18 +137,18 @@ function CrearTarjetaPersonajeEncontrado(listaParaBuscar){
         </div>`
         containerResultadosBusqueda.append(tarjeta);
     }
-}    
+}
 const botonBorrarResultado = document.getElementById('boton-borrar-resultados');
 
-botonBorrarResultado.addEventListener('click',limpiarResultados);
+botonBorrarResultado.addEventListener('click', limpiarResultados);
 
 
-function limpiarResultados(){
+function limpiarResultados() {
 
     const listaTarjetasDeBusqueda = document.querySelectorAll('.simpson-tarjeta-busqueda');
 
     console.log(listaTarjetasDeBusqueda);
-     
+
     const containerTarjetasEncontradas = document.querySelector('#container-tarjetas-busqueda');
 
     listaTarjetasDeBusqueda.forEach(tarjeta => {
