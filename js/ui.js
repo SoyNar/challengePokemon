@@ -2,7 +2,7 @@ const cardContainer = document.getElementById('container');
 
  export function createCardHtml(character) {
   return `
-    <div class="card shadow-sm rounded-4 overflow-hidden border-0 my-2" style="width: 13rem;">
+    <div class="card shadow-sm rounded-4 overflow-hidden border-0 my-2" style="width: 13rem; data-name="${character.name}">
       <!-- Imagen del Pokémon -->
       <div class="bg-light text-center p-2">
         <img src="${character.image}" 
@@ -32,10 +32,10 @@ const cardContainer = document.getElementById('container');
 
       <!-- Botones de Acción -->
       <div class="card-footer bg-white border-0 p-2 pt-0 d-flex flex-column gap-1">
-        <button class="btn btn-warning btn-sm w-100 fw-semibold py-1 d-flex align-items-center justify-content-center gap-1">
+        <button class="btn btn-warning btn-sm w-100 fw-semibold py-1 d-flex align-items-center justify-content-center gap-1 btn-add-fav">
           <i class="bi bi-star-fill"></i> Agregar a favoritos
         </button>
-        <button class="btn btn-outline-danger btn-sm w-100 fw-semibold py-1 d-flex align-items-center justify-content-center gap-1">
+        <button class="btn btn-outline-danger btn-sm w-100 fw-semibold py-1 d-flex align-items-center justify-content-center gap-1 btn-delete">
           <i class="bi bi-trash"></i> Eliminar
         </button>
       </div>
@@ -57,4 +57,20 @@ export function showMessage(container, message, type = 'warning') {
     <div class="alert alert-${type} py-2 small" role="alert">
       ${message}
     </div>`;
+}
+
+export function renderizarListaFavoritos(favoritos, contenedor) {
+  if (!contenedor) return;
+
+  if (favoritos.length === 0) {
+    contenedor.innerHTML = '<p class="text-muted small">No tienes Pokémon favoritos guardados.</p>';
+    return;
+  }
+
+  // Genera el HTML acumulado para todas las cards
+  contenedor.innerHTML = `
+    <div class="d-flex flex-wrap gap-2">
+      ${favoritos.map((pokemon) => createCardHtml(pokemon)).join('')}
+    </div>
+  `;
 }

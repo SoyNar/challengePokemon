@@ -1,6 +1,6 @@
-const botonBuscar = document.getElementById('boton-buscar');
-const botonBorrarResultado = document.getElementById('boton-borrar-resultados');
-const inputBusqueda = document.getElementById('nombre-personaje');
+const botonBuscar = document.getElementById('btnBuscar');
+const botonBorrarResultado = document.getElementById('btnLimpiar');
+const inputBusqueda = document.getElementById('inputPokemon');
 
 export function configurarEventoBuscar(callback){
     botonBuscar.addEventListener('click', callback);
