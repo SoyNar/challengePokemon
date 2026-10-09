@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Los Simpson API</title>
+    <link rel="stylesheet" href="/estilos.css">
+    <script type="module" src="./js/main.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Clase manejo DOM consumiendo API</h1>
+    </header>
+    <main>
+        <section class="section-contenido">
+            <h2>Este es el contenido principal de la API de los Simpsons.</h2>
+
+            <div id="barra-de-busqueda">
+                <label for="nombre-personaje">Buscar personaje</label>
+                <input type="text" id="nombre-personaje" name="busqueda-personaje" placeholder="Personaje Nombre">
+                <button type="button" id="boton-buscar">Buscar</button>
+                <button type="button" id="boton-borrar-resultados">Limpiar resultados</button>
+            </div>
+
+            <div>
+                <div id="container-tarjetas-busqueda">
+
+                </div>
+            </div>
+
+            <div class="container-tarjetas">
+                <div class="simpson-tarjeta">
+                    <img src="" alt="">
+                    <p class="nombre">Homero</p>
+                    <p class="ocupacion">inspector</p>
+                    <p class="frase">doh</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Practica DOM y API</p>
+    </footer>
+</body>
+
+</html>
