@@ -21,6 +21,7 @@ export function guardarFavorito(pokemon) {
    
 }
 export function eliminarFavorito(nombre) {
+    console.log("Eliminando favorito:", nombre);
     const favoritos = obtenerFavoritos();
     
     // Convertimos el parámetro a minúsculas una sola vez

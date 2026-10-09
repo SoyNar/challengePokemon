@@ -99,6 +99,8 @@ function manejarAgregarFavorito() {
 
   if (exito) {
     actualizarVistaFavoritos();
+    searchResult.innerHTML = '';
+    pokemonActual = null;
   } else {
     alert(`El Pokémon "${pokemonActual.name}" ya está en tus favoritos.`);
   }
