@@ -49,3 +49,5 @@ export const buscarPokemon = obtenerPokemon;
 
 // Alias temporal para compatibilidad con main.js antes de avanzar a las siguientes tareas
 export const buscarPersonajes = obtenerPokemon;
+
+
