@@ -1,49 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Los Simpson API</title>
-    <link rel="stylesheet" href="/estilos.css">
-    <script type="module" src="./js/main.js"></script>
+    <title>Pokédex</title>
+    <link rel="stylesheet" href="./estilos.css">
 </head>
 
 <body>
-    <header>
-        <h1>Clase manejo DOM consumiendo API</h1>
-    </header>
-    <main>
-        <section class="section-contenido">
-            <h2>Este es el contenido principal de la API de los Simpsons.</h2>
+    <input type="text" id="inputPokemon" placeholder="Nombre del Pokémon">
+    <button type="button" id="btnBuscar">Buscar</button>
+    <button type="button" id="btnLimpiar">Limpiar</button>
 
-            <div id="barra-de-busqueda">
-                <label for="nombre-personaje">Buscar personaje</label>
-                <input type="text" id="nombre-personaje" name="busqueda-personaje" placeholder="Personaje Nombre">
-                <button type="button" id="boton-buscar">Buscar</button>
-                <button type="button" id="boton-borrar-resultados">Limpiar resultados</button>
-            </div>
+    <div id="resultadoBusqueda"></div>
+    <div id="listaFavoritos"></div>
 
-            <div>
-                <div id="container-tarjetas-busqueda">
-
-                </div>
-            </div>
-
-            <div class="container-tarjetas">
-                <div class="simpson-tarjeta">
-                    <img src="" alt="">
-                    <p class="nombre">Homero</p>
-                    <p class="ocupacion">inspector</p>
-                    <p class="frase">doh</p>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2026 Practica DOM y API</p>
-    </footer>
+    <script type="module" src="./js/main.js"></script>
 </body>
 
 </html>
