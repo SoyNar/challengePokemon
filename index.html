@@ -9,14 +9,33 @@
 </head>
 
 <body>
-    <input type="text" id="inputPokemon" placeholder="Nombre del Pokémon">
-    <button type="button" id="btnBuscar">Buscar</button>
-    <button type="button" id="btnLimpiar">Limpiar</button>
+    <main class="pokedex">
+        <h1 class="titulo">Pokédex</h1>
+        <p class="descripcion">
+            Busca a tus Pokémos favoritos y crea tu colección.
+        </p>
 
-    <div id="resultadoBusqueda"></div>
-    <div id="listaFavoritos"></div>
+        <section class="barra-busqueda">
+            <input type="text" id="inputPokemon" placeholder="Nombre del Pokémon">
+
+            <button type="button" id="btnBuscar">Buscar</button>
+            <button type="button" id="btnLimpiar">Limpiar</button>
+        </section>
+
+        <section class="seccion-resultados">
+            <h2>Resultado de búsqueda</h2>
+            <div id="resultadoBusqueda"></div>
+        </section>
+
+        <section class="seccion-favoritos">
+            <h2>Mis colección de favoritos</h2>
+            <div id="listaFavoritos"></div>
+        </section>
+
+    </main>
 
     <script type="module" src="./js/main.js"></script>
+
 </body>
 
 </html>
