@@ -1,11 +1,12 @@
 import { obtenerPokemon } from './api.js';
 import { createCardHtml, showSpinner, showMessage } from './ui.js';
-
+import { renderizarFavoritos } from './favoritos.js';
 // 1. Declaramos la variable en el scope global del módulo
 const searchResult = document.getElementById('resultadoBusqueda');
 
 document.addEventListener('DOMContentLoaded', () => {
   renderPokemonCard('pikachu');
+  renderizarFavoritos();
 });
 
 /**
