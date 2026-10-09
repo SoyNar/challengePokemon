@@ -1,48 +1,37 @@
-import { buscarPersonajes } from "./api.js";
-import { 
-    renderizarTodosLosPersonajes, 
-    renderizarPersonajesEncontrados,
-limpiarResultadosBusqueda } from "./dom.js";
+import { obtenerPokemon } from './api.js';
+import { createCardHtml, showSpinner, showMessage } from './ui.js';
 
-import { 
-    configurarEventoBuscar,
-    configurarEventoLimpiar,
-    obtenerTextoBusqueda,
-    limpiarInputBusqueda} from "./events.js";
+// 1. Declaramos la variable en el scope global del módulo
+const searchResult = document.getElementById('resultadoBusqueda');
 
-import { filtrarPersonajesPorNombre } from "./utils.js";
+document.addEventListener('DOMContentLoaded', () => {
+  renderPokemonCard('pikachu');
+});
 
-let listaPersonajes = [];
+/**
+ * Carga la información de la PokéAPI y renderiza la card en el DOM
+ */
+async function renderPokemonCard(pokemonName) {
+  if (!searchResult) {
+    console.error('El contenedor #resultadoBusqueda no existe en el HTML');
+    return;
+  }
 
-function manejarBusqueda(){
-    const textoIngresado = obtenerTextoBusqueda();
+  showSpinner(searchResult);
+  const pokemonData = await obtenerPokemon(pokemonName);
+  if (!pokemonData) {
+    showMessage(searchResult, 'No se encontró el Pokémon especificado.', 'danger');
+    return;
+  }
 
-    if(textoIngresado === ''){
-        console.log('No se ingreso un nombre de personaje');
-        return;        
-    }
+  // Extraemos únicamente los campos necesarios para la card
+  const character = {
+    name: pokemonData.name,
+    image: pokemonData.sprites.other['official-artwork'].front_default || pokemonData.sprites.front_default,
+    attack: pokemonData.stats.find((s) => s.stat.name === 'attack')?.base_stat || 0,
+    defense: pokemonData.stats.find((s) => s.stat.name === 'defense')?.base_stat || 0,
+  };
 
-    const personajesEncontrados = filtrarPersonajesPorNombre(listaPersonajes, textoIngresado);
-    
-    renderizarPersonajesEncontrados(personajesEncontrados);
+  // Asignamos el HTML generado al contenedor
+  searchResult.innerHTML = createCardHtml(character);
 }
-
-
-function manejarLimpiar(){
-    limpiarResultadosBusqueda();
-    limpiarInputBusqueda();
-}
-
-async function inicializar() {
-    listaPersonajes = await buscarPersonajes();
-    
-    console.log('Lista de personajes: ', listaPersonajes);
-
-    renderizarTodosLosPersonajes(listaPersonajes);
-
-    configurarEventoBuscar(manejarBusqueda);
-    configurarEventoLimpiar(manejarLimpiar);
-    
-}
-
-inicializar();
